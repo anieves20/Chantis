@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chanti's Hair & Beauty Salon — Bradley Beach, NJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Didact+Gothic&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush:    #f2e4df;
+    --rose:     #d4847a;
+    --rosedark: #a85a52;
+    --mauve:    #7c4f5e;
+    --plum:     #2e1a24;
+    --champagne:#f8f0ea;
+    --warm-off: #fdf7f4;
+    --sage:     #8fa886;
+    --text:     #2e1a24;
+    --muted:    #9a7a83;
+    --line:     rgba(46,26,36,0.1);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-off);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── subtle grain ── */
+  body::after {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:9000;
+    opacity:.6;
+  }
+
+  /* ══════════════════════════════
+     HEADER / NAV
+  ══════════════════════════════ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: var(--plum);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+    border-bottom: 1px solid rgba(242,228,223,0.12);
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 0;
+    gap: 2px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .logo-name {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blush);
+    line-height: 1;
+  }
+
+  .logo-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 200;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--rose);
+  }
+
+  nav {
+    display: flex;
+    align-items: stretch;
+  }
+
+  nav a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(242,228,223,0.55);
+    text-decoration: none;
+    padding: 0 1.4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .22s, border-color .22s;
+    cursor: pointer;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--rose);
+    border-bottom-color: var(--rose);
+  }
+
+  /* ══════════════════════════════
+     PAGE SYSTEM
+  ══════════════════════════════ */
+  .page { display: none; }
+  .page.active { display: block; animation: pageFade .35s ease both; }
+
+  @keyframes pageFade {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ══════════════════════════════
+     SHARED COMPONENTS
+  ══════════════════════════════ */
+  .eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--rose);
+    display: block;
+    margin-bottom: 1.1rem;
+  }
+
+  .section-title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    color: var(--plum);
+  }
+
+  .section-title em {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--rosedark);
+  }
+
+  .thin-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--rose);
+    margin: 1.5rem 0;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--warm-off);
+    background: var(--rosedark);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+
+  .cta-btn:hover { background: var(--mauve); transform: translateY(-2px); }
+
+  .cta-ghost {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--plum);
+    background: transparent;
+    padding: 0.85rem 2.2rem;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+  }
+
+  .cta-ghost:hover { border-color: var(--rose); color: var(--rosedark); }
+
+  /* ══════════════════════════════
+     HOME
+  ══════════════════════════════ */
+
+  /* Hero */
+  .hero {
+    background: var(--plum);
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* decorative petals / botanical shapes (pure CSS) */
+  .hero-decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    border-radius: 50% 5% 50% 5%;
+    opacity: 0.045;
+    background: var(--rose);
+  }
+  .petal:nth-child(1) { width:420px; height:420px; top:-80px; right:60px; transform:rotate(25deg); }
+  .petal:nth-child(2) { width:260px; height:260px; bottom:40px; right:200px; transform:rotate(-40deg); opacity:.025; }
+  .petal:nth-child(3) { width:180px; height:180px; top:200px; left:40px; transform:rotate(60deg); opacity:.03; }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 4rem 7rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: slideIn .7s .1s ease forwards;
+  }
+
+  .hero-h1 {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(3.2rem, 6vw, 5.8rem);
+    font-weight: 400;
+    color: var(--blush);
+    line-height: 1.0;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    animation: slideIn .7s .2s ease forwards;
+  }
+
+  .hero-h1 .italic-line {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--rose);
+    display: block;
+  }
+
+  .hero-rule {
+    width: 45px;
+    height: 1px;
+    background: var(--rose);
+    margin: 2.2rem 0;
+    opacity: 0;
+    animation: slideIn .7s .3s ease forwards;
+  }
+
+  .hero-body {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(242,228,223,0.5);
+    line-height: 1.9;
+    max-width: 360px;
+    opacity: 0;
+    animation: slideIn .7s .4s ease forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.8rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: slideIn .7s .5s ease forwards;
+  }
+
+  .hero-btns .cta-btn { background: var(--rose); }
+  .hero-btns .cta-btn:hover { background: var(--rosedark); }
+  .hero-btns .cta-ghost { color: rgba(242,228,223,.6); border-color: rgba(242,228,223,.2); }
+  .hero-btns .cta-ghost:hover { color: var(--blush); border-color: rgba(242,228,223,.5); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  /* Typographic art panel — no image needed */
+  .hero-art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    opacity: 0;
+    animation: fadeIn .9s .4s ease forwards;
+  }
+
+  .art-big {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(5rem, 10vw, 10rem);
+    color: rgba(212,132,122,0.07);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .art-mid {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(242,228,223,0.18);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: -1rem;
+  }
+
+  .art-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,132,122,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+  }
+
+  .art-circle-inner {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,132,122,0.08);
+  }
+
+  /* Hero info strip */
+  .hero-strip {
+    grid-column: span 2;
+    background: var(--rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 1.1rem 3rem;
+    flex-wrap: wrap;
+  }
+
+  .strip-item {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .strip-item strong {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .strip-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+  }
+
+  /* Services Overview Cards */
+  .services-overview {
+    padding: 7rem 4rem;
+    background: var(--warm-off);
+  }
+
+  .services-overview-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .overview-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  .service-card {
+    background: var(--warm-off);
+    padding: 2.8rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background .25s;
+    cursor: default;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--rose);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+
+  .service-card:hover { background: var(--champagne); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .card-title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--plum);
+    margin-bottom: 0.7rem;
+  }
+
+  .card-body {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  .card-from {
+    margin-top: 1.2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rosedark);
+  }
+
+  /* About strip */
+  .about-strip {
+    background: var(--plum);
+    padding: 6rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .about-left .section-title { color: var(--blush); }
+  .about-left .section-title em { color: var(--rose); }
+
+  .about-left p {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    color: rgba(242,228,223,0.55);
+    line-height: 1.9;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+
+  .about-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(242,228,223,0.07);
+  }
+
+  .about-stat {
+    background: rgba(242,228,223,0.04);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 2.8rem;
+    color: var(--rose);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(242,228,223,0.35);
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--rose);
+    padding: 4rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .cta-banner-text {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-banner-text span {
+    display: block;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.55em;
+    color: rgba(255,255,255,.7);
+    margin-top: 0.3rem;
+    font-weight: 400;
+  }
+
+  .cta-banner a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--rose);
+    background: var(--plum);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background .2s;
+    white-space: nowrap;
+  }
+
+  .cta-banner a:hover { background: var(--mauve); }
+
+  /* ══════════════════════════════
+     SERVICES PAGE
+  ══════════════════════════════ */
+
+  .services-hero {
+    background: var(--plum);
+    padding: 5.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,132,122,0.1);
+  }
+
+  .services-hero::after {
+    content: '';
+    position: absolute;
+    right: 40px; top: 40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,132,122,0.07);
+  }
+
+  .services-hero .section-title { color: var(--blush); }
+  .services-hero .section-title em { color: var(--rose); }
+
+  .services-hero p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(242,228,223,.45);
+    font-size: 1.05rem;
+    margin-top: 0.8rem;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .services-hero-inner { position: relative; z-index: 1; }
+
+  /* Price table sections */
+  .price-body {
+    padding: 5rem 4rem;
+    background: var(--warm-off);
+  }
+
+  .price-sections {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    gap: 4rem;
+  }
+
+  .price-section {}
+
+  .price-section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--plum);
+    margin-bottom: 0;
+  }
+
+  .price-section-title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--plum);
+    flex: 1;
+  }
+
+  /* Two-column table for wider groups */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .price-table tr {
+    border-bottom: 1px solid var(--line);
+    transition: background .18s;
+  }
+
+  .price-table tr:hover { background: var(--champagne); }
+
+  .price-table td {
+    padding: 1.1rem 1rem;
+    font-family: 'Lora', serif;
+    font-size: 0.98rem;
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .price-table td:last-child {
+    text-align: right;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--rosedark);
+    white-space: nowrap;
+  }
+
+  .price-table .sub-item td {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .price-table .sub-item td:first-child { padding-left: 2.2rem; }
+
+  .price-table .sub-item td:last-child {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .price-table .group-head td {
+    padding-top: 1.4rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--rose);
+    border-bottom: none;
+  }
+
+  /* Two-column layout for price sections */
+  .price-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 3rem;
+  }
+
+  /* Note block */
+  .price-note {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding: 1.2rem 1.4rem;
+    border-left: 2px solid var(--rose);
+    background: rgba(212,132,122,0.05);
+    margin-top: 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* ══════════════════════════════
+     CONTACT PAGE
+  ══════════════════════════════ */
+
+  .contact-hero {
+    background: var(--plum);
+    padding: 5.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    left: -100px; bottom: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,132,122,0.09);
+  }
+
+  .contact-hero .section-title { color: var(--blush); }
+  .contact-hero .section-title em { color: var(--rose); }
+  .contact-hero-inner { position: relative; z-index: 1; }
+
+  .contact-body {
+    padding: 6rem 4rem;
+    background: var(--warm-off);
+  }
+
+  .contact-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* Info blocks */
+  .contact-block { margin-bottom: 3rem; }
+
+  .contact-block h3 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1rem;
+  }
+
+  .contact-block p,
+  .contact-block a {
+    font-family: 'Lora', serif;
+    font-size: 1.02rem;
+    color: var(--text);
+    line-height: 1.8;
+    text-decoration: none;
+    display: block;
+    transition: color .2s;
+  }
+
+  .contact-block a:hover { color: var(--rosedark); }
+
+  .contact-phone {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 2rem;
+    color: var(--rosedark) !important;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-phone-note {
+    font-family: 'Josefin Sans', sans-serif !important;
+    font-size: 0.6rem !important;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted) !important;
+    margin-top: 0.2rem;
+  }
+
+  /* Hours table */
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .hours-table tr { border-bottom: 1px solid var(--line); }
+  .hours-table tr:last-child { border-bottom: none; }
+
+  .hours-table td {
+    padding: 0.9rem 0;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .hours-table td:last-child {
+    text-align: right;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--rosedark);
+  }
+
+  .hours-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.2rem;
+  }
+
+  .hours-open::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sage);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: .3; }
+  }
+
+  /* Map placeholder */
+  .map-box {
+    background: var(--plum);
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .map-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(212,132,122,0.04) 28px, rgba(212,132,122,0.04) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(212,132,122,0.04) 28px, rgba(212,132,122,0.04) 29px);
+  }
+
+  .map-box p {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(242,228,223,.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .map-box a {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--rose);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(212,132,122,0.3);
+    padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+
+  .map-box a:hover { color: var(--blush); border-color: rgba(242,228,223,.4); }
+
+  .map-address {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(242,228,223,.35);
+    position: relative;
+    z-index: 1;
+    margin-top: 0.2rem;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    background: var(--plum);
+    padding: 4rem 4rem 2.5rem;
+    border-top: 1px solid rgba(242,228,223,0.07);
+  }
+
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(242,228,223,0.07);
+  }
+
+  .footer-brand .logo-name { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+  .footer-brand .logo-tag { display: block; margin-bottom: 1.2rem; }
+
+  .footer-brand p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(242,228,223,.3);
+    line-height: 1.8;
+    max-width: 240px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: rgba(242,228,223,.35);
+    line-height: 2;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    transition: color .2s;
+  }
+
+  .footer-col a:hover { color: var(--rose); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(242,228,223,.18);
+  }
+
+  .footer-credit {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(212,132,122,.4);
+  }
+
+  .footer-credit span { color: var(--rose); font-style: normal; }
+
+  /* ── animations ── */
+  @keyframes slideIn {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; }
+    to   { opacity:1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    header { padding: 0 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 5rem 2rem 3rem; }
+    .hero-right { display: none; }
+    .hero-strip { grid-column: span 1; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .about-strip { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+    .services-hero, .contact-hero { padding: 4rem 2rem; }
+    .price-body, .contact-body { padding: 4rem 2rem; }
+    .price-cols { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .cta-banner { padding: 3rem 2rem; }
+    nav a { padding: 0 0.9rem; font-size: 0.6rem; }
+  }
+
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .about-right { grid-template-columns: 1fr 1fr; }
+    .hero-strip { gap: 1.5rem; justify-content: flex-start; padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     HEADER
+══════════════════════════ -->
+<header>
+  <div class="logo" onclick="showPage('home')">
+    <span class="logo-name">Chanti's</span>
+    <span class="logo-tag">Hair &amp; Beauty Salon</span>
+  </div>
+  <nav>
+    <a class="active" onclick="showPage('home', this)">Welcome</a>
+    <a onclick="showPage('services', this)">Services</a>
+    <a onclick="showPage('contact', this)">Contact</a>
+  </nav>
+</header>
+
+
+<!-- ══════════════════════════
+     HOME PAGE
+══════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-decor">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+
+    <div class="hero-left">
+      <p class="hero-eyebrow">Bradley Beach, New Jersey</p>
+      <h1 class="hero-h1">
+        <span class="italic-line">Beauty</span>
+        That Feels
+        <span class="italic-line">Like You.</span>
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-body">Full-service hair &amp; beauty salon — nails, hair, waxing, and cosmetics, all under one roof on Main Street.</p>
+      <div class="hero-btns">
+        <a class="cta-btn" onclick="showPage('services', document.querySelectorAll('nav a')[1])">View Services</a>
+        <a class="cta-ghost" href="tel:7328970064">Call to Book</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="art-circle"><div class="art-circle-inner"></div></div>
+      <div class="hero-art">
+        <div class="art-big">C</div>
+        <div class="art-mid">Est. Bradley Beach</div>
+      </div>
+    </div>
+
+    <!-- Info strip spans full width -->
+    <div class="hero-strip">
+      <div class="strip-item">
+        <strong>Mon – Sat</strong>&nbsp; 9am – 8pm
+      </div>
+      <div class="strip-dot"></div>
+      <div class="strip-item">
+        <strong>Sunday</strong>&nbsp; 9am – 5pm
+      </div>
+      <div class="strip-dot"></div>
+      <div class="strip-item">
+        <strong>320 Main St</strong>&nbsp; Bradley Beach, NJ
+      </div>
+      <div class="strip-dot"></div>
+      <div class="strip-item">
+        <strong>(732) 897-0064</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services overview -->
+  <section class="services-overview">
+    <div class="services-overview-inner">
+      <div class="overview-header">
+        <div>
+          <span class="eyebrow">What We Offer</span>
+          <h2 class="section-title">Our <em>Services</em></h2>
+        </div>
+        <a class="cta-ghost" onclick="showPage('services', document.querySelectorAll('nav a')[1])">Full Menu &amp; Pricing →</a>
+      </div>
+
+      <div class="cards-grid">
+        <div class="service-card">
+          <div class="card-title">Nails</div>
+          <p class="card-body">Manicures, pedicures, spa treatments, and nail enhancements including acrylics &amp; French sets.</p>
+          <div class="card-from">From $8</div>
+        </div>
+        <div class="service-card">
+          <div class="card-title">Hair</div>
+          <p class="card-body">Cuts for the whole family, color, highlights, and blow-dry styling by experienced stylists.</p>
+          <div class="card-from">From $13</div>
+        </div>
+        <div class="service-card">
+          <div class="card-title">Waxing</div>
+          <p class="card-body">Precision brow and lip shaping, bikini waxing, and full body waxing services.</p>
+          <div class="card-from">From $8</div>
+        </div>
+        <div class="service-card">
+          <div class="card-title">Cosmetics</div>
+          <p class="card-body">Professional makeup application for any occasion — a polished look you'll love.</p>
+          <div class="card-from">$25</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About strip -->
+  <section class="about-strip">
+    <div class="about-left">
+      <span class="eyebrow" style="color:var(--rose)">About Chanti's</span>
+      <h2 class="section-title">A Salon <em>Built<br>on Care</em></h2>
+      <div class="thin-rule" style="background:rgba(212,132,122,0.4)"></div>
+      <p>Located in the heart of Bradley Beach, Chanti's has been a trusted destination for hair, nails, waxing, and beauty. We believe every client deserves to leave feeling their best.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-stat">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Days a Week</span>
+      </div>
+      <div class="about-stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Services Offered</span>
+      </div>
+      <div class="about-stat">
+        <span class="stat-num">NJ</span>
+        <span class="stat-label">Shore Local</span>
+      </div>
+      <div class="about-stat">
+        <span class="stat-num">★</span>
+        <span class="stat-label">Bradley Beach</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA banner -->
+  <div class="cta-banner">
+    <div class="cta-banner-text">
+      Ready to Book?
+      <span>Call us or stop by — we'd love to see you.</span>
+    </div>
+    <a href="tel:7328970064">(732) 897-0064</a>
+  </div>
+
+</div><!-- /home -->
+
+
+<!-- ══════════════════════════
+     SERVICES PAGE
+══════════════════════════ -->
+<div id="page-services" class="page">
+
+  <section class="services-hero">
+    <div class="services-hero-inner">
+      <span class="eyebrow">Complete Price List</span>
+      <h1 class="section-title">Services &amp; <em>Pricing</em></h1>
+      <p>All services performed by our experienced team. Prices may vary. Call for consultations.</p>
+    </div>
+  </section>
+
+  <div class="price-body">
+    <div class="price-sections">
+
+      <!-- NAILS -->
+      <div class="price-section">
+        <div class="price-section-head">
+          <h2 class="price-section-title">Nail Services</h2>
+        </div>
+        <table class="price-table">
+          <tr>
+            <td>Manicure</td>
+            <td>$12</td>
+          </tr>
+          <tr class="sub-item">
+            <td>Polish Change</td>
+            <td>$8</td>
+          </tr>
+          <tr>
+            <td>Pedicure</td>
+            <td>$25</td>
+          </tr>
+          <tr class="sub-item">
+            <td>Polish Change</td>
+            <td>$15</td>
+          </tr>
+          <tr>
+            <td>Spa Treatment</td>
+            <td>$45</td>
+          </tr>
+          <tr class="group-head">
+            <td colspan="2">Nail Enhancements — Standard</td>
+          </tr>
+          <tr class="sub-item">
+            <td>New Set</td>
+            <td>$60</td>
+          </tr>
+          <tr class="sub-item">
+            <td>Fill Ins</td>
+            <td>$30</td>
+          </tr>
+          <tr class="group-head">
+            <td colspan="2">Nail Enhancements — French</td>
+          </tr>
+          <tr class="sub-item">
+            <td>New Set</td>
+            <td>$80</td>
+          </tr>
+          <tr class="sub-item">
+            <td>Fill Ins</td>
+            <td>$40</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- HAIR -->
+      <div class="price-section">
+        <div class="price-section-head">
+          <h2 class="price-section-title">Hair Services</h2>
+        </div>
+        <div class="price-cols">
+          <table class="price-table">
+            <tr class="group-head">
+              <td colspan="2">Cuts</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Men</td>
+              <td>$15</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Boys</td>
+              <td>$13</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Women</td>
+              <td>$28</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Girls</td>
+              <td>$15</td>
+            </tr>
+            <tr class="group-head">
+              <td colspan="2">Color &amp; Style</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Coloring</td>
+              <td>Up to $55</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Highlights</td>
+              <td>Up to $75</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Blow Dry</td>
+              <td>$35</td>
+            </tr>
+          </table>
+          <div>
+            <div class="price-note">Pricing may vary based on hair length, thickness, and service complexity. Consultation recommended for color services.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COSMETICS -->
+      <div class="price-section">
+        <div class="price-section-head">
+          <h2 class="price-section-title">Cosmetics &amp; Makeup</h2>
+        </div>
+        <table class="price-table">
+          <tr>
+            <td>Makeup Application</td>
+            <td>$25</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- WAXING -->
+      <div class="price-section">
+        <div class="price-section-head">
+          <h2 class="price-section-title">Waxing</h2>
+        </div>
+        <div class="price-cols">
+          <table class="price-table">
+            <tr class="group-head">
+              <td colspan="2">Face</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Lips</td>
+              <td>$8</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Eyebrows</td>
+              <td>$10</td>
+            </tr>
+            <tr class="group-head">
+              <td colspan="2">Body</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Bikini</td>
+              <td>$25</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Legs — Half</td>
+              <td>$25</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Legs — Full</td>
+              <td>$45</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Arms — Under</td>
+              <td>$15</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Arms — Half</td>
+              <td>$20</td>
+            </tr>
+            <tr class="sub-item">
+              <td>Arms — Full</td>
+              <td>$35</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /price-sections -->
+
+    <div style="max-width:1080px; margin: 3rem auto 0;">
+      <div class="price-note">
+        Prices listed are starting rates and may vary. For custom services, special events, or questions about pricing, please call us at <a href="tel:7328970064" style="color:var(--rosedark); text-decoration:none">(732) 897-0064</a>.
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <div class="cta-banner-text">
+      Questions about a service?
+      <span>We're happy to help — give us a call.</span>
+    </div>
+    <a href="tel:7328970064">(732) 897-0064</a>
+  </div>
+
+</div><!-- /services -->
+
+
+<!-- ══════════════════════════
+     CONTACT PAGE
+══════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <section class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="eyebrow">We'd Love to See You</span>
+      <h1 class="section-title">Find &amp; <em>Contact</em> Us</h1>
+    </div>
+  </section>
+
+  <div class="contact-body">
+    <div class="contact-grid">
+
+      <!-- LEFT: contact info -->
+      <div>
+        <div class="contact-block">
+          <h3>Phone</h3>
+          <a class="contact-phone" href="tel:7328970064">(732) 897-0064</a>
+          <span class="contact-phone-note">Salon</span>
+          <a class="contact-phone" href="tel:7325479227" style="font-size:1.5rem; margin-top:0.8rem">(732) 547-9227</a>
+          <span class="contact-phone-note">Mobile</span>
+        </div>
+
+        <div class="contact-block">
+          <h3>Email</h3>
+          <a href="mailto:chantisalon@gmail.com">chantisalon@gmail.com</a>
+        </div>
+
+        <div class="contact-block">
+          <h3>Address</h3>
+          <p>320 Main Street<br>Bradley Beach, NJ 07720</p>
+        </div>
+
+        <div class="contact-block">
+          <h3>Hours</h3>
+          <div class="hours-open">Open Today</div>
+          <table class="hours-table">
+            <tr>
+              <td>Monday – Saturday</td>
+              <td>9:00 am – 8:00 pm</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>9:00 am – 5:00 pm</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: map + extra -->
+      <div>
+        <div class="contact-block">
+          <h3>Get Directions</h3>
+          <p style="font-size:0.95rem; color:var(--muted); font-style:italic; margin-bottom:0.5rem">Located on Main Street in the heart of Bradley Beach.</p>
+        </div>
+
+        <div class="map-box">
+          <p>320 Main Street, Bradley Beach NJ</p>
+          <a href="https://maps.google.com/?q=320+Main+Street+Bradley+Beach+NJ+07720" target="_blank">Open in Google Maps →</a>
+          <p class="map-address">Bradley Beach, NJ 07720</p>
+        </div>
+
+        <div class="contact-block" style="margin-top:2.5rem">
+          <h3>Walk-ins Welcome</h3>
+          <p style="font-style:italic; color:var(--muted); font-size:0.95rem; line-height:1.8">
+            No appointment needed for most services. For custom color, event makeup, or catering-style bookings, calling ahead is appreciated.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <div class="cta-banner-text">
+      Stop By Today
+      <span>320 Main Street, Bradley Beach — open 7 days a week.</span>
+    </div>
+    <a href="tel:7328970064">(732) 897-0064</a>
+  </div>
+
+</div><!-- /contact -->
+
+
+<!-- ══════════════════════════
+     FOOTER
+══════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-name">Chanti's</span>
+      <span class="logo-tag">Hair &amp; Beauty Salon</span>
+      <p>Your full-service beauty destination in Bradley Beach, NJ — nails, hair, waxing, and cosmetics.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a onclick="showPage('home', document.querySelectorAll('nav a')[0])">Welcome</a>
+      <a onclick="showPage('services', document.querySelectorAll('nav a')[1])">Services</a>
+      <a onclick="showPage('contact', document.querySelectorAll('nav a')[2])">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:7328970064">(732) 897-0064 — Salon</a>
+      <a href="tel:7325479227">(732) 547-9227 — Mobile</a>
+      <a href="mailto:chantisalon@gmail.com">chantisalon@gmail.com</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <p>Mon – Sat: 9am – 8pm</p>
+      <p>Sunday: 9am – 5pm</p>
+      <p style="margin-top:0.8rem; color:rgba(242,228,223,.18); font-size:0.82rem">320 Main St<br>Bradley Beach, NJ 07720</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Chanti's Hair &amp; Beauty Salon. All rights reserved.</p>
+    <p class="footer-credit">Website designed by <span>Andrew Nieves</span> &nbsp;·&nbsp; <a href="mailto:drewnieves2010@gmail.com" style="color:rgba(212,132,122,.4); text-decoration:none; font-style:italic; transition:color .2s" onmouseover="this.style.color='var(--rose)'" onmouseout="this.style.color='rgba(212,132,122,.4)'">drewnieves2010@gmail.com</a> &nbsp;·&nbsp; <a href="tel:9295959296" style="color:rgba(212,132,122,.4); text-decoration:none; font-style:italic; transition:color .2s" onmouseover="this.style.color='var(--rose)'" onmouseout="this.style.color='rgba(212,132,122,.4)'">(929) 595-9296</a></p>
+  </div>
+</footer>
+
+<script>
+  function showPage(id, clickedEl) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    if (clickedEl) clickedEl.classList.add('active');
+    const idx = {home:0, services:1, contact:2}[id];
+    if (idx !== undefined && !clickedEl) {
+      document.querySelectorAll('nav a')[idx].classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
